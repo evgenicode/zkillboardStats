@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 const needle = require('needle')
 
-const API_BASE_URL = "https://zkillboard.com/api/characterID/2118421377/"
+
+
+
+
+const API_BASE_URL = "https://zkillboard.com/api/characterID/2118685358/"
 
 router.get('/', async (inRequest, inResponse) => {
   try {
