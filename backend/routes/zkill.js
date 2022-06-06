@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const needle = require('needle')
+const apicache = require('apicache')
 
 
+const API_BASE_URL = "https://zkillboard.com/api/characterID/2118421377/"
 
+// Init cache
+let cache = apicache.middleware
 
-
-const API_BASE_URL = "https://zkillboard.com/api/characterID/2118685358/"
-
-router.get('/', async (inRequest, inResponse) => {
+router.get('/', cache('5 minutes'), async (inRequest, inResponse) => {
   try {
     const apiResponse = await needle('get', `${API_BASE_URL}`)
     const data = apiResponse.body
