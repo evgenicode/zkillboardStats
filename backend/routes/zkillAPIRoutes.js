@@ -5,6 +5,7 @@ const apicache = require('apicache')
 
 const TEST_ID = process.env.TEST_ID
 const API_BASE_URL = `https://zkillboard.com/api/characterID/${TEST_ID}/`
+const HEADER_USER_AGENT = process.env.HEADER_USER_AGENT
 
 const Killmail = require('../models/killmailModel')
 
@@ -13,6 +14,8 @@ let cache = apicache.middleware
 
 router.get('/', cache('5 minutes'), async (inRequest, inResponse) => {
   try {
+    inRequest.headers['user-agent'] = `${HEADER_USER_AGENT}`
+
     const apiResponse = await needle('get', `${API_BASE_URL}`)
 
     apiResponse.body.forEach(element => {

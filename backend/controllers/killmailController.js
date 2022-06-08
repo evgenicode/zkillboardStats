@@ -2,6 +2,7 @@ const Killmail = require('../models/killmailModel')
 
 
 const getKillmails = async (inRequest, inResponse) => {
+  
   try {
      const killmails = await Killmail.find()
      inResponse.status(200).json(killmails)
