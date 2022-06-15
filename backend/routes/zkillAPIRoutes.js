@@ -34,4 +34,32 @@ router.get('/', cache('5 minutes'), async (inRequest, inResponse) => {
   
 })
 
+async function test () {
+  //console.log("start")
+  const options = {
+    headers: {'maintainer': `${HEADER_USER_AGENT}`}
+  }
+  needle.get(`${API_BASE_URL}`, options, function(error, inResponse) {
+    if (!error && inResponse.statusCode == 200)
+    console.log("zkillboardAPICall")
+    inResponse.body.forEach(element => {
+      element = new Killmail({
+        killmail_id: element.killmail_id,
+        zkb: element.zkb,
+      })
+      
+      element.save()
+    })
+    if (error) {
+      console.log(error)
+    }
+  })
+  //console.log("end")
+    
+}
+
+//setInterval(test, 10000)
+
+
+
 module.exports = router
