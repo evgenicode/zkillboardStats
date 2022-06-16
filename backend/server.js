@@ -22,7 +22,7 @@ app.use('/api', zkillLimiter)
 
 
 // Routes
-app.use('/api', require('./routes/zkillAPIRoutes'))
+app.use('/api', require('./controllers/zkillAPIController')) // For testing only
 app.use('/killmail', require('./routes/killmailRoutes'))
 
 

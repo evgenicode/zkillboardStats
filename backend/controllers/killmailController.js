@@ -1,6 +1,6 @@
 const Killmail = require('../models/killmailModel')
 const logger = require('../logger/index')
-const needle = require('needle')
+const needle = require('needle') // For testing only
 
 
 const getKillmails = async (inRequest, inResponse) => {
@@ -8,7 +8,7 @@ const getKillmails = async (inRequest, inResponse) => {
   try {
      const killmails = await Killmail.find()
      logger.info("killmail controller request")
-     console.log("call")
+     console.log("killmail controller request")
      inResponse.status(200).json(killmails)
      
   } catch (error) {
